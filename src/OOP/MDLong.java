@@ -66,6 +66,34 @@ public class MDLong{
         this.number = con;
     }
 
+    public void inc(){
+
+        int length = this.number.size();
+
+        ArrayList<Integer> con = new ArrayList<Integer>();
+        for (int i = 0; i < length; i++) {
+        con.add(this.number.get(i));
+        }
+        con.add(0);
+
+        con.set(0,con.get(0) + 1);
+
+        for (int ix = 0; ix < length; ix++)
+        {
+            con.set(ix + 1,con.get(ix) / 10 + con.get(ix+1));
+            con.set(ix,con.get(ix) % 10);
+        }
+        length = con.size()-1;
+        while(con.get(length) == 0){
+            con.remove(length);
+            length--;
+        }
+
+        this.number = con;
+        
+    }
+
+
    public ArrayList<Integer> getNumber(){
       return this.number;
    }
@@ -84,8 +112,7 @@ public class MDLong{
    public static void main(String []args){
       
       MDLong myLong = new MDLong( 234 );
-      MDLong myLong2 = new MDLong( 765 );
-      myLong.FacMargoPidr(myLong2);
+      myLong.inc();
       System.out.println(myLong.toString());
    }
 }
