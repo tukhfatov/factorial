@@ -17,6 +17,10 @@ public class MDLong{
       number.add(0);
    }
 
+   public MDLong(ArrayList<Integer> x){
+      this.number = x;
+   }
+
     private ArrayList<Integer> ArrayConverter(int input){
       
       ArrayList<Integer> result = new ArrayList<Integer>();      
@@ -62,11 +66,11 @@ public class MDLong{
         this.number = con;
     }
 
-    
-   public ArrayList<Integer> FacMargoPidr(int x,int y){
 
-        ArrayList<Integer> helper = ArrayConverter(x);
-        ArrayList<Integer> number = ArrayConverter(y);
+   public MDLong FacMargoPidr(MDLong x,MDLong y){
+
+        ArrayList<Integer> helper = x.getNumber();
+        ArrayList<Integer> number = y.getNumber();
         int length = number.size() + helper.size() + 1;
         ArrayList<Integer> con = new ArrayList<Integer>();
         for (int i = 0; i <=length; i++) {
@@ -87,9 +91,17 @@ public class MDLong{
             length--;
         }
         
-        return con;
+         
+         return (new MDLong( con ) );
    }
- 
+
+   public ArrayList<Integer> getNumber(){
+      return this.number;
+   }
+  
+   public void setNumber(ArrayList<Integer> x){
+      this.number = x;
+   }
    public String toString(){
         String result = "";
         for(int i = number.size()-1;i>=0;i--)
@@ -97,4 +109,12 @@ public class MDLong{
         return result;
    }
  
+
+   public static void main(String []args){
+      
+      MDLong myLong = new MDLong( 234 );
+      MDLong myLong2 = new MDLong( 765 );
+      MDLong res = myLong.FacMargoPidr(myLong,myLong2);
+      System.out.println(res.toString());
+   }
 }
