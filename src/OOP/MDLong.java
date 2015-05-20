@@ -61,6 +61,34 @@ public class MDLong{
         
         this.number = con;
     }
+
+    
+   public ArrayList<Integer> FacMargoPidr(int x,int y){
+
+        ArrayList<Integer> helper = ArrayConverter(x);
+        ArrayList<Integer> number = ArrayConverter(y);
+        int length = number.size() + helper.size() + 1;
+        ArrayList<Integer> con = new ArrayList<Integer>();
+        for (int i = 0; i <=length; i++) {
+         con.add(0);
+        }
+
+        for (int ix = 0; ix < number.size(); ix++)
+            for (int jx = 0; jx < helper.size(); jx++)
+                con.set(ix + jx , number.get(ix) * helper.get(jx) + con.get(ix + jx) );
+         
+        for (int ix = 0; ix<length; ix++)
+        {
+            con.set(ix + 1,con.get(ix) / 10 + con.get(ix+1));
+            con.set(ix,con.get(ix) % 10);
+        }
+        while(con.get(length) == 0){
+            con.remove(length);
+            length--;
+        }
+        
+        return con;
+   }
  
    public String toString(){
         String result = "";
